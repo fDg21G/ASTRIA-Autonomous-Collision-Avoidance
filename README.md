@@ -38,6 +38,4 @@ Independent Research Project
 
 The complete technical dissertation describing the ASTRIA system architecture,
 algorithms, simulations, and AI models is available here:
-
-[Download the full technical dissertation (PDF)](./ASTRIA_Technical_Dissertation_Houssam_Rharbi (1).pdf)
-
+[Download the full technical dissertation (PDF)](./ASTRIA_Technical_Dissertation_Houssam_Rharbi%20(1).pdf)
