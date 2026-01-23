@@ -53,9 +53,7 @@ No hardware or operational deployment yet
 Houssam Rharbi  
 Independent Research Project  
 2024–2025
-## Future Directions
-- Hardware-in-the-loop experimentation
-- Edge-AI based onboard reasoning
+
 ## 📄 Technical Dissertation
 
 The complete technical dissertation describing the ASTRIA system architecture,
