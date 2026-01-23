@@ -3,7 +3,7 @@ AI-driven autonomous collision avoidance and risk assessment system for LEO Cube
 > ⚠️ Student Research Prototype  
 > This project is a learning-focused simulation and decision-support tool built using public data.  
 > It does not represent an operational or certified autonomous system.
-# ASTRIA – AI-Driven Autonomous Collision Avoidance for LEO CubeSats
+# ASTRIA – AI-assisted collision risk assessment research framework (simulation + prototype)
 ## What ASTRIA Is / Is Not
 
 ### What ASTRIA Is
@@ -39,17 +39,14 @@ ASTRIA integrates:
 - Multi-stage conjunction screening
 - Machine learning-based risk classification
 - Fuel-efficient maneuver planning
-
 ## Technologies Used
-- Python
-- SGP4
-- NumPy / SciPy
-- XGBoost
-- Poliastro
-- Monte Carlo simulations
-
+- Python  
+- SGP4 (orbital propagation)  
+- NumPy  
+- Basic scripting for conjunction analysis
 ## Project Status
 Prototype / Research Stage
+No hardware or operational deployment yet
 
 ## Author
 Houssam Rharbi  
