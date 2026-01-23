@@ -19,7 +19,15 @@ AI-driven autonomous collision avoidance and risk assessment system for LEO Cube
 ASTRIA is an independent aerospace research project focused on developing an
 autonomous, AI-assisted collision risk assessment and avoidance system for
 CubeSats operating in Low Earth Orbit (LEO).
+## Example Simulation Script
 
+This repository includes a simple Python script demonstrating
+orbital propagation and conjunction analysis using public TLE data.
+
+📁 `scripts/astria_simulation.py`
+
+⚠️ This script is a **student research prototype**.
+Results are approximate and intended for learning purposes only.
 ## Problem Statement
 LEO is increasingly congested with active satellites and debris.
 CubeSats often lack continuous ground-based monitoring, increasing collision risk.
