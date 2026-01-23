@@ -1,5 +1,8 @@
 # ASTRIA-Autonomous-Collision-Avoidance
 AI-driven autonomous collision avoidance and risk assessment system for LEO CubeSats.
+> ⚠️ Student Research Prototype  
+> This project is a learning-focused simulation and decision-support tool built using public data.  
+> It does not represent an operational or certified autonomous system.
 # ASTRIA – AI-Driven Autonomous Collision Avoidance for LEO CubeSats
 
 ## Overview
