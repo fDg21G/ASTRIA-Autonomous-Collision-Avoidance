@@ -1,6 +1,9 @@
 # ASTRIA: Autonomous Collision Avoidance System
 ### 🛰️ Student Research Project | Mobile-Edge Simulation
+## 📄 Technical Documentation
+For a deep dive into the engineering methodology, mathematical models (SGP4), and hardware validation results, please refer to the full research paper:
 
+> **[Download: ASTRIA Research Dissertation (2026) - PDF](./ASTRIA_Dissertation_2026_HIL_Verified.pdf)**
 ![Status](https://img.shields.io/badge/Status-Student%20Prototype-orange)
 ![Hardware](https://img.shields.io/badge/Hardware-Android%20Smartphone-blue)
 ![Goal](https://img.shields.io/badge/Goal-Learning%20%26%20Exploration-green)
