@@ -79,21 +79,38 @@ print(f"   • Objects within safety bubble (50 km): {len(close_objects)}")
 print(f"   • CRITICAL objects (<10 km): {len(critical_objects)}")
 
 # ------------------------------------------------------------
-# 4. RISK ASSESSMENT (ML Simulation)
+# 4. RISK ASSESSMENT (Mahalanobis Distance & Covariance)
 # ------------------------------------------------------------
-print("\n[4] Performing risk assessment...")
+print("\n[4] Performing probabilistic risk assessment...")
+
+def calculate_mahalanobis_risk(distance_km, along_track_error=1.5, cross_track_error=0.3):
+    """
+    V2 Logic: Simplified Mahalanobis distance calculation.
+    Approximates uncertainty weighting based on pseudo-covariance.
+    """
+    # Build a simple 2D diagonal covariance matrix for the encounter
+    covariance = np.diag([cross_track_error**2, along_track_error**2])
+    inv_cov = np.linalg.inv(covariance)
+    
+    # Assume worst-case: the miss vector is perfectly aligned with the uncertainty axis
+    miss_vector = np.array([distance_km * 0.7, distance_km * 0.7]) 
+    
+    # Mahalanobis Distance: D_m = sqrt(mu^T * C^-1 * mu)
+    d_m = np.sqrt(np.dot(np.dot(miss_vector.T, inv_cov), miss_vector))
+    
+    # Convert Mahalanobis distance to a non-linear risk score
+    risk = np.exp(-0.5 * d_m)
+    return min(0.99, risk)
 
 if critical_objects:
     print("   🚨 CRITICAL THREAT DETECTED!")
-    for obj_id, distance in critical_objects[:3]:  # Show first 3
-        # Simulated ML risk score based on distance and velocity
-        base_risk = 1.0 - (distance / warning_threshold_km)
-        # Add some "uncertainty" from simulated TLE age
-        tle_uncertainty = np.random.uniform(0.1, 0.3)
-        risk_score = min(0.99, base_risk + tle_uncertainty)
+    for obj_id, distance in critical_objects[:3]:
         
-        print(f"     • Object #{obj_id}: {distance:.1f} km away")
-        print(f"       Risk score: {risk_score:.2f} (Evasion recommended)")
+        # Calculate risk using our new statistical uncertainty model
+        risk_score = calculate_mahalanobis_risk(distance)
+        
+        print(f"     • Object #{obj_id}: {distance:.1f} km nominal miss")
+        print(f"       Statistical Risk Score: {risk_score:.3f} (Covariance weighted)")
         
     # ------------------------------------------------------------
     # 5. MANEUVER PLANNING
