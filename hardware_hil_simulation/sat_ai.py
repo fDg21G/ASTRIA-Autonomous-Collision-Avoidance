@@ -55,6 +55,8 @@ while True:
         }
         server.sendto(json.dumps(resp).encode('utf-8'), addr)
             
-    except Exception as e:
+   except Exception as e:
         print(f"[ERROR] {e}")
+        time.sleep(1) # تأخير بسيط قبل إعادة المحاولة
+        continue
       
