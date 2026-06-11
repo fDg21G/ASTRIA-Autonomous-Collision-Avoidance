@@ -1,52 +1,25 @@
-# ASTRIA: Autonomous Collision Avoidance System
-### 🛰️ Student Research Project | Mobile-Edge Simulation
-## 📄 Technical Documentation
-For a deep dive into the engineering methodology, mathematical models (SGP4), and hardware validation results, please refer to the full research paper:
+# 🛰️ ASTRIA: Autonomous Collision Avoidance System
+[![Status: V2 Research Phase](https://img.shields.io/badge/Status-V2_Research_Phase-blue.svg)]()
 
-> **[Download: ASTRIA Research Dissertation (2026) - PDF](./ASTRIA_Dissertation_2026_HIL_Verified.pdf)**
-![Status](https://img.shields.io/badge/Status-Student%20Prototype-orange)
-![Hardware](https://img.shields.io/badge/Hardware-Android%20Smartphone-blue)
-![Goal](https://img.shields.io/badge/Goal-Learning%20%26%20Exploration-green)
+> **From Deterministic Distance to Probabilistic Risk:** A Hardware-in-the-Loop (HIL) testbed simulating satellite collision avoidance on Edge ARM processors.
 
-> **Note:** This is an independent project by a pre-university student. It explores how consumer electronics can simulate complex aerospace logic when specialized hardware is unavailable.
+## 📖 Project Evolution
 
----
+ASTRIA is an independent aerospace systems engineering project. The architecture is evolving across two distinct phases to reflect true orbital dynamics:
 
-## 📖 The Story: Why This Exists?
-I am a student passionate about aerospace engineering, but I reside in a region where accessing specialized hardware (like flight computers or development boards) is difficult. 
+### Phase 1: Edge AI Feasibility (Completed)
+Demonstrated that consumer ARM hardware (Android via Termux) can propagate SGP4 orbital mechanics and execute XGBoost risk screening in real-time ($<2$ms latency). However, this phase relied on deterministic Euclidean distance (KD-Trees), which fundamentally conflates geometric proximity with actual collision risk.
 
-Instead of letting this limitation stop my research, I asked a simple question:
-**"Can I turn the phone in my pocket into a satellite Onboard Computer?"**
+### Phase 2: Probabilistic Rigor & B-Plane Projection (Current Focus)
+Space is a highly dynamic environment governed by uncertainty. ASTRIA V2 transitions from 3D distance to **Probability of Collision ($P_c$)** integration. 
+* **Covariance Modeling:** Replacing scalar distances with $3 \times 3$ RTN covariance matrices to model TLE (Two-Line Element) inaccuracies.
+* **B-Plane Encounter:** Projecting the 3D error ellipsoid onto the 2D encounter plane (B-Plane) orthogonal to the relative velocity vector.
+* **Mahalanobis Distance:** Re-training the XGBoost arbiter to evaluate risk using Mahalanobis distance instead of Euclidean distance, capturing the true "uncertainty lengths" between objects.
 
-This repository documents my attempt to build a **Hardware-in-the-Loop (HIL)** testbed using only my laptop (Ground Station) and my Android phone (Satellite OBC) to simulate autonomous collision avoidance in space.
+## 🛠️ System Architecture
 
----
+* **The Satellite Node (Edge ARM):** Runs the orbital propagator (SGP4) and the mathematical risk engine natively on an ARM processor.
+* **The Ground Station:** A localized simulation injecting real-world RF constraints (e.g., Gilbert-Elliott packet loss, Doppler shift delays) into the UDP telemetry link.
 
-## 🛠️ How It Works (The "Hack")
-Since I couldn't import a Raspberry Pi or Jetson Nano, I used **Termux** on Android to run Python flight software on the phone's ARM processor.
-
-### System Architecture
-1.  **The Satellite (My Phone):** Runs `sat_ai.py`. It uses the phone's CPU to calculate orbital mechanics (SGP4) and check for collisions.
-2.  **The Ground Station (My Laptop):** Runs `ground_ai.py`. It sends time data to the phone via Wi-Fi (UDP Socket) and waits for a response.
-3.  **The Scenario:** I programmed a simulation where "Space Debris" gets dangerously close to the satellite to see if the phone can detect it in time.
-
----
-
-## 📊 Results (What I Learned)
-Despite the simple setup, the results were surprising:
-* **Speed:** My phone processed orbital calculations in **< 1 millisecond**.
-* **Accuracy:** The system successfully triggered a "RED ALERT" when the debris came within 50km.
-* **Conclusion:** You don't always need expensive labs to learn aerospace engineering; sometimes, you just need code and curiosity.
-
----
-
-## 📂 Project Structure
-
-```bash
-ASTRIA/
-├── hardware_hil_simulation/     # The code running on my Phone & Laptop
-│   ├── sat_ai.py                # Runs on Android (Termux)
-│   └── ground_ai.py             # Runs on Laptop (Windows/Linux)
-├── data/                        # Sample TLE data used for learning
-└── README.md                    # This file
-
+## 👨‍💻 Author
+**Houssam Rharbi**  Casablanca, Morocco
