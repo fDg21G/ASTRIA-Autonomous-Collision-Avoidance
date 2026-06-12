@@ -20,6 +20,6 @@ Space is a highly dynamic environment governed by uncertainty. ASTRIA V2 transit
 
 * **The Satellite Node (Edge ARM):** Runs the orbital propagator (SGP4) and the mathematical risk engine natively on an ARM processor.
 * **The Ground Station:** A localized simulation injecting real-world RF constraints (e.g., Gilbert-Elliott packet loss, Doppler shift delays) into the UDP telemetry link.
-
+**[Read the official Technical Whitepaper](./ASTRIA_Technical_Whitepaper.pdf)**
 ## 👨‍💻 Author
 **Houssam Rharbi**  Casablanca, Morocco
